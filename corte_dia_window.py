@@ -2,6 +2,7 @@ import customtkinter as ctk
 from tkinter import messagebox, ttk
 import tkinter as tk
 from datetime import datetime, date, timedelta
+from colores_modernos import PRIMARY_COLOR, SECONDARY_COLOR, ACCENT_COLOR, BACKGROUND_COLOR, CARD_COLOR, TEXT_COLOR, SUBTEXT_COLOR, SUCCESS_COLOR, ERROR_COLOR, BUTTON_COLOR, BUTTON_TEXT_COLOR, BORDER_RADIUS, FONT_FAMILY, TITLE_FONT_SIZE, SUBTITLE_FONT_SIZE, TEXT_FONT_SIZE, BUTTON_FONT_SIZE
 
 class CorteDiaWindow:
     def __init__(self, parent, database_manager):
@@ -11,7 +12,7 @@ class CorteDiaWindow:
         self.fecha_actual = self.get_fecha_con_ventas()
         
         # Crear ventana de corte del día
-        self.window = ctk.CTkToplevel(parent)
+        self.window = ctk.CTkToplevel(parent, fg_color=BACKGROUND_COLOR)
         self.window.title("Corte del Día")
         self.window.geometry("1200x800")
         self.window.transient(parent)
@@ -44,44 +45,46 @@ class CorteDiaWindow:
     def setup_ui(self):
         """Configura la interfaz de usuario"""
         # Header con título y fecha
-        self.frame_header = ctk.CTkFrame(self.window, height=80)
+        self.frame_header = ctk.CTkFrame(self.window, height=80, fg_color=BACKGROUND_COLOR, corner_radius=BORDER_RADIUS)
         self.frame_header.pack(fill="x", padx=10, pady=(10, 5))
+
         
         # Título principal
         ctk.CTkLabel(
             self.frame_header,
             text="📊 CORTE DEL DÍA",
-            font=ctk.CTkFont(size=28, weight="bold"),
-            text_color="#2E86C1"
+            font=ctk.CTkFont(size=TITLE_FONT_SIZE+6, weight="bold"),
+            text_color=PRIMARY_COLOR
         ).pack(side="left", padx=20, pady=20)
         
         # Controles de fecha
-        self.frame_fecha = ctk.CTkFrame(self.frame_header)
+        self.frame_fecha = ctk.CTkFrame(self.frame_header, fg_color=BACKGROUND_COLOR, corner_radius=BORDER_RADIUS)
         self.frame_fecha.pack(side="right", padx=20, pady=15)
         
-        ctk.CTkLabel(self.frame_fecha, text="Fecha:", font=ctk.CTkFont(size=14, weight="bold")).pack(side="left", padx=5)
+        ctk.CTkLabel(self.frame_fecha, text="Fecha:", font=ctk.CTkFont(size=TEXT_FONT_SIZE, weight="bold"), text_color=TEXT_COLOR).pack(side="left", padx=5)
         
-        self.entry_fecha = ctk.CTkEntry(self.frame_fecha, width=120, height=35)
+        self.entry_fecha = ctk.CTkEntry(self.frame_fecha, width=120, height=35, fg_color=CARD_COLOR, text_color=TEXT_COLOR, font=ctk.CTkFont(size=TEXT_FONT_SIZE))
         self.entry_fecha.pack(side="left", padx=5)
         self.entry_fecha.insert(0, self.fecha_actual)
         
-        btn_hoy = ctk.CTkButton(self.frame_fecha, text="Hoy", width=60, height=35, command=self.fecha_hoy)
+        btn_hoy = ctk.CTkButton(self.frame_fecha, text="Hoy", width=60, height=35, command=self.fecha_hoy, fg_color=BUTTON_COLOR, text_color=BUTTON_TEXT_COLOR, font=ctk.CTkFont(size=BUTTON_FONT_SIZE), corner_radius=BORDER_RADIUS)
         btn_hoy.pack(side="left", padx=2)
-        
-        btn_ayer = ctk.CTkButton(self.frame_fecha, text="Ayer", width=60, height=35, command=self.fecha_ayer)
+
+        btn_ayer = ctk.CTkButton(self.frame_fecha, text="Ayer", width=60, height=35, command=self.fecha_ayer, fg_color=BUTTON_COLOR, text_color=BUTTON_TEXT_COLOR, font=ctk.CTkFont(size=BUTTON_FONT_SIZE), corner_radius=BORDER_RADIUS)
         btn_ayer.pack(side="left", padx=2)
-        
-        btn_ventas = ctk.CTkButton(self.frame_fecha, text="Ventas", width=60, height=35, command=self.fecha_con_ventas)
+
+        btn_ventas = ctk.CTkButton(self.frame_fecha, text="Ventas", width=60, height=35, command=self.fecha_con_ventas, fg_color=BUTTON_COLOR, text_color=BUTTON_TEXT_COLOR, font=ctk.CTkFont(size=BUTTON_FONT_SIZE), corner_radius=BORDER_RADIUS)
         btn_ventas.pack(side="left", padx=2)
-        
+
         btn_actualizar = ctk.CTkButton(
             self.frame_fecha, text="🔄", width=40, height=35, 
-            command=self.cargar_corte
+            command=self.cargar_corte,
+            fg_color=ACCENT_COLOR, text_color=BUTTON_TEXT_COLOR, font=ctk.CTkFont(size=BUTTON_FONT_SIZE), corner_radius=BORDER_RADIUS
         )
         btn_actualizar.pack(side="left", padx=5)
         
         # Contenedor principal con scroll
-        self.scroll_frame = ctk.CTkScrollableFrame(self.window, width=1160, height=650)
+        self.scroll_frame = ctk.CTkScrollableFrame(self.window, width=1160, height=650, fg_color=BACKGROUND_COLOR)
         self.scroll_frame.pack(fill="both", expand=True, padx=10, pady=5)
         
         # Crear secciones
@@ -92,27 +95,27 @@ class CorteDiaWindow:
         self.create_estadisticas_section()
         
         # Botones inferiores
-        self.frame_botones = ctk.CTkFrame(self.window, height=60)
+        self.frame_botones = ctk.CTkFrame(self.window, height=60, fg_color=BACKGROUND_COLOR, corner_radius=BORDER_RADIUS)
         self.frame_botones.pack(fill="x", padx=10, pady=5)
-        
+
         btn_exportar = ctk.CTkButton(
             self.frame_botones, text="📄 Exportar PDF", width=150, height=40,
             command=self.exportar_pdf,
-            fg_color="#E67E22", hover_color="#D35400"
+            fg_color=ACCENT_COLOR, hover_color=SECONDARY_COLOR, text_color=BUTTON_TEXT_COLOR, font=ctk.CTkFont(size=BUTTON_FONT_SIZE), corner_radius=BORDER_RADIUS
         )
         btn_exportar.pack(side="left", padx=10, pady=10)
-        
+
         btn_imprimir = ctk.CTkButton(
             self.frame_botones, text="🖨️ Imprimir", width=150, height=40,
             command=self.imprimir_corte,
-            fg_color="#8E44AD", hover_color="#7D3C98"
+            fg_color=PRIMARY_COLOR, hover_color=SECONDARY_COLOR, text_color=BUTTON_TEXT_COLOR, font=ctk.CTkFont(size=BUTTON_FONT_SIZE), corner_radius=BORDER_RADIUS
         )
         btn_imprimir.pack(side="left", padx=5, pady=10)
-        
+
         btn_cerrar = ctk.CTkButton(
             self.frame_botones, text="❌ Cerrar", width=100, height=40,
             command=self.window.destroy,
-            fg_color="#95A5A6", hover_color="#7F8C8D"
+            fg_color=ERROR_COLOR, hover_color=SUBTEXT_COLOR, text_color=BUTTON_TEXT_COLOR, font=ctk.CTkFont(size=BUTTON_FONT_SIZE), corner_radius=BORDER_RADIUS
         )
         btn_cerrar.pack(side="right", padx=10, pady=10)
     

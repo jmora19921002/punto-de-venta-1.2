@@ -5,6 +5,7 @@ Permite registrar, editar, eliminar y buscar proveedores
 
 import customtkinter as ctk
 from tkinter import messagebox, ttk
+from colores_modernos import PRIMARY_COLOR, SECONDARY_COLOR, ACCENT_COLOR, BACKGROUND_COLOR, CARD_COLOR, TEXT_COLOR, SUBTEXT_COLOR, SUCCESS_COLOR, ERROR_COLOR, BUTTON_COLOR, BUTTON_TEXT_COLOR, BORDER_RADIUS, FONT_FAMILY, TITLE_FONT_SIZE, SUBTITLE_FONT_SIZE, TEXT_FONT_SIZE, BUTTON_FONT_SIZE
 import tkinter as tk
 from icon_manager import icon_manager
 
@@ -15,7 +16,7 @@ class ProveedoresWindow:
         self.update_callback = update_callback
         self.proveedor_seleccionado = None
         
-        self.window = ctk.CTkToplevel(master)
+        self.window = ctk.CTkToplevel(master, fg_color=BACKGROUND_COLOR)
         self.window.title("Gestión de Proveedores")
         
         # Configuración responsive

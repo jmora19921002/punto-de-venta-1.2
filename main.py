@@ -6,6 +6,7 @@ import json
 from database import DatabaseManager
 from responsive_manager import ResponsiveManager
 from icon_manager import icon_manager
+from colores_modernos import PRIMARY_COLOR, SECONDARY_COLOR, ACCENT_COLOR, BACKGROUND_COLOR, CARD_COLOR, TEXT_COLOR, SUBTEXT_COLOR, SUCCESS_COLOR, ERROR_COLOR, BUTTON_COLOR, BUTTON_TEXT_COLOR, BORDER_RADIUS, FONT_FAMILY, TITLE_FONT_SIZE, SUBTITLE_FONT_SIZE, TEXT_FONT_SIZE, BUTTON_FONT_SIZE
 
 ctk.set_appearance_mode("light")
 ctk.set_default_color_theme("blue")
@@ -52,10 +53,20 @@ class PuntoVentaApp:
                     'tasa': tasa
                 })
             self.moneda_principal = self.monedas_activas[0]['codigo'] if self.monedas_activas else 'VES'
-            self.ventana = ctk.CTk(fg_color="#FFFFFF")
+            self.ventana = ctk.CTk(fg_color=BACKGROUND_COLOR)
             
             self.responsive = ResponsiveManager(self.ventana)
             
+            # Establecer icono en la barra de tareas y ventana principal
+            try:
+                from PIL import Image, ImageTk
+                icon_path = icon_manager.get_icon_path('main_png')
+                if icon_path:
+                    img = Image.open(icon_path)
+                    icon = ImageTk.PhotoImage(img)
+                    self.ventana.iconphoto(False, icon)
+            except Exception as e:
+                print(f"Error al establecer icono en barra de tareas: {e}")
             icon_manager.set_window_icon(self.ventana)
             titulo_ventana = f"Sistema de Punto de Venta - {usuario_autenticado['nombre_completo']} ({usuario_autenticado['rol'].title()})"
             self.ventana.title(titulo_ventana)
@@ -275,7 +286,7 @@ class PuntoVentaApp:
             width=dims['cliente_entry_width'], 
             height=dims['cliente_entry_height'], 
             corner_radius=10,
-            font=self.responsive.create_responsive_font(11, "normal", "normal")
+            font=self.responsive.create_responsive_font(16, "normal", "normal")
         )
         self.entry_cliente.place(x=positions['cliente_entry_x'], y=positions['cliente_entry_y'])
 
@@ -286,7 +297,7 @@ class PuntoVentaApp:
             height=dims['btn_cliente_height'],
             command=self.buscar_cliente_dialog, 
             corner_radius=10,
-            font=self.responsive.create_responsive_font(12, "normal", "button")
+            font=self.responsive.create_responsive_font(16, "normal", "button")
         )
         btn_buscar_cliente.place(x=positions['cliente_btn_x'], y=positions['cliente_btn_y'])
 
@@ -297,12 +308,12 @@ class PuntoVentaApp:
             height=dims['btn_cliente_height'],
             command=self.nuevo_cliente_dialog, 
             corner_radius=10,
-            font=self.responsive.create_responsive_font(14, "bold", "button")
+            font=self.responsive.create_responsive_font(16, "bold", "button")
         )
         btn_nuevo_cliente.place(x=positions['cliente_btn2_x'], y=positions['cliente_btn2_y'])
 
         # Etiqueta para productos seleccionados
-        productos_font = self.responsive.create_responsive_font(12, "bold", "normal")
+        productos_font = self.responsive.create_responsive_font(16, "bold", "normal")
         ctk.CTkLabel(
             self.frame_carrito, 
             text="Productos seleccionados:", 
@@ -369,32 +380,33 @@ class PuntoVentaApp:
         user_info_frame = ctk.CTkFrame(
             self.frame_carrito, 
             width=info_frame_width, 
-            height=info_frame_height
+            height=info_frame_height,
+            fg_color="#e3f0ff"
         )
         user_info_frame.place(x=positions['user_info_x'], y=positions['user_info_y'])
 
-        user_font = self.responsive.create_responsive_font(10, "normal", "small")
+        user_font = self.responsive.create_responsive_font(20, "normal", "small")
         user_label = ctk.CTkLabel(
             user_info_frame, 
             text=f"Usuario: {self.usuario_actual['username']} | {self.usuario_actual['rol'].title()}",
             font=user_font,
-            text_color="gray"
+            text_color="#00023b"
         )
         user_label.place(x=dims['margin'], y=5)
 
         logout_btn_width = int(info_frame_width * 0.15)
         logout_btn_height = max(25, int(info_frame_height * 0.7))
-        logout_font = self.responsive.create_responsive_font(9, "normal", "small")
+        logout_font = self.responsive.create_responsive_font(20, "normal", "bold")
         
         btn_logout = ctk.CTkButton(
             user_info_frame, 
             text="🚺 Salir", 
-            width=logout_btn_width, 
+            width=120, 
             height=logout_btn_height,
             command=self.logout, 
             corner_radius=10,
-            fg_color="red", 
-            hover_color="darkred",
+            fg_color="#00a1e1", 
+            hover_color="#025474",
             font=logout_font
         )
         btn_logout.place(x=int(info_frame_width * 0.8), y=2)
@@ -403,66 +415,14 @@ class PuntoVentaApp:
         self.frame_acciones = ctk.CTkFrame(
             self.frame_carrito, 
             width=dims['acciones_width'], 
-            height=dims['acciones_height']
+            height=dims['acciones_height'],
+            fg_color="#e3f0ff" 
+
         )
         self.frame_acciones.place(x=positions['acciones_x'], y=positions['acciones_y'])
 
         # Configurar botones de acción
         self.setup_responsive_action_buttons()
-    
-    def setup_responsive_action_buttons(self):
-        """Configura los botones de acción de manera responsive"""
-        dims = self.responsive.get_dimensions()
-        button_font = self.responsive.create_responsive_font(10, "normal", "button")
-        
-        btn_width = dims['accion_btn_width']
-        btn_height = dims['accion_btn_height']
-        margin = dims['margin']
-        
-        buttons = [
-            {
-                'text': '🗑️ Limpiar',
-                'command': self.limpiar_carrito,
-                'fg_color': 'gray',
-                'hover_color': 'darkgray',
-                'x': margin
-            },
-            {
-                'text': '💾 Guardar',
-                'command': self.guardar_operacion_dialog,
-                'fg_color': 'orange',
-                'hover_color': 'darkorange',
-                'x': btn_width + margin * 2
-            },
-            {
-                'text': '💰 COBRAR',
-                'command': self.procesar_venta_dialog,
-                'fg_color': 'green',
-                'hover_color': 'darkgreen',
-                'x': 2 * (btn_width + margin) + margin
-            },
-            {
-                'text': '➖ Quitar',
-                'command': self.eliminar_item_carrito,
-                'fg_color': 'red',
-                'hover_color': 'darkred',
-                'x': 3 * (btn_width + margin) + margin
-            }
-        ]
-        
-        for btn_config in buttons:
-            btn = ctk.CTkButton(
-                self.frame_acciones,
-                text=btn_config['text'],
-                width=btn_width,
-                height=btn_height,
-                command=btn_config['command'],
-                corner_radius=10,
-                fg_color=btn_config['fg_color'],
-                hover_color=btn_config['hover_color'],
-                font=button_font
-            )
-            btn.place(x=btn_config['x'], y=margin)
     
     def setup_responsive_carrito_treeview(self):
         """Configura el Treeview del carrito de manera responsive"""
@@ -489,9 +449,8 @@ class PuntoVentaApp:
         # Configurar encabezados con fuente responsive
         header_font = ('Arial', self.responsive.get_font_size(13, 'normal'))
         style = ttk.Style()
-        style.configure("Treeview.Heading", font=header_font)
-        # Configurar tamaño de letra de los artículos agregados (reducido en 3 puntos)
-        style.configure("Treeview", font=('Arial', self.responsive.get_font_size(15, 'normal')))
+        style.configure("Treeview.Heading", font=header_font, background="#ffffff", foreground="#010577")
+        style.configure("Treeview", font=('Arial', self.responsive.get_font_size(15, 'normal')), rowheight=55)
 
         
         self.tree_carrito.heading("producto", text="Producto")
@@ -575,45 +534,50 @@ class PuntoVentaApp:
         # Fuente aumentada para botones de acción
         button_font = self.responsive.create_responsive_font(18, "bold", "button")
         
-        btn_width = dims['accion_btn_width']
-        btn_height = dims['accion_btn_height']
+        btn_width = 110
+        btn_height = 90
         margin = dims['margin']
         
         buttons = [
             {
                 'text': '🗑️\nLimpiar',
                 'command': self.limpiar_carrito,
-                'fg_color': 'gray',
-                'hover_color': 'darkgray'
+                'text_color': "#023d61",
+                'fg_color': '#d0ecf8',
+                'hover_color': '#04a2e1'
             },
             {
                 'text': '💾\nGuardar',
                 'command': self.guardar_operacion_dialog,
-                'fg_color': 'orange',
-                'hover_color': 'darkorange'
+                'text_color': "#023d61",
+                'fg_color': '#d0ecf8',
+                'hover_color': '#04a2e1'
             },
             {
-                'text': '💰\nCOBRAR',
+                'text': '💰\nCobrar',
                 'command': self.procesar_venta_dialog,
-                'fg_color': 'green',
-                'hover_color': 'darkgreen'
+                'text_color': "#023d61",
+                'fg_color': '#d0ecf8',
+                'hover_color': '#04a2e1'
             },
             {
-                'text': '➖\nQuitar',
+                'text': '➖\nQuitar\nProducto',
                 'command': self.eliminar_item_carrito,
-                'fg_color': 'red',
-                'hover_color': 'darkred'
+                'text_color': "#023d61",
+                'fg_color': '#d0ecf8',
+                'hover_color': '#04a2e1'
             },
             {
                 'text': '📝\nPrecio\nManual',
                 'command': self.cambiar_precio_manual,
-                'fg_color': 'blue',
-                'hover_color': 'darkblue'
+                'text_color': "#023d61",
+                'fg_color': '#d0ecf8',
+                'hover_color': '#04a2e1'
             }
         ]
         
         # Configuración para máximo 3 botones por línea
-        max_cols = 3
+        max_cols = 5
         num_buttons = len(buttons)
         num_rows_needed = (num_buttons + max_cols - 1) // max_cols
         
@@ -631,8 +595,9 @@ class PuntoVentaApp:
                 height=btn_height,
                 command=btn_config['command'],
                 corner_radius=10,
-                fg_color=btn_config['fg_color'],
-                hover_color=btn_config['hover_color'],
+                fg_color=btn_config.get('fg_color'),
+                hover_color=btn_config.get('hover_color'),
+                text_color=btn_config.get('text_color'),
                 font=button_font
             )
             btn.place(x=x_pos, y=y_pos)
@@ -871,10 +836,10 @@ class PuntoVentaApp:
                 width=size_btn, height=size_btn,
                 command=lambda p=producto: self.agregar_al_carrito(p),
                 corner_radius=10,
-                fg_color="#f0f6ff",
-                hover_color="#dbeafe",
+                fg_color="#00a1e2",
+                hover_color="#d0ecf8",
                 font=ctk.CTkFont(size=max(12, int(size_btn * 0.12)),weight="bold"),
-                text_color="#333333",  # gris oscuro
+                text_color="#FFFFFF",  # gris oscuro
                 state="normal" if producto['stock_actual'] > 0 else "disabled"
             )
             btn_producto.grid(row=fila, column=columna, padx=5, pady=5, sticky="nsew")

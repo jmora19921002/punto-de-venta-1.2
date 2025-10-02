@@ -1,4 +1,4 @@
-('C:\\Users\\DELL\\Desktop\\pv versiones\\punto de venta 1.2\\build\\MI PUNTO '
+('C:\\Users\\DELL\\Desktop\\pv versiones\\punto-de-venta-1.2\\build\\MI PUNTO '
  'DE VENTA\\PYZ-00.pyz',
  [('PIL',
    'C:\\Users\\DELL\\AppData\\Roaming\\Python\\Python313\\site-packages\\PIL\\__init__.py',
@@ -473,8 +473,8 @@
   ('bz2', 'C:\\Program Files\\Python313\\Lib\\bz2.py', 'PYMODULE'),
   ('calendar', 'C:\\Program Files\\Python313\\Lib\\calendar.py', 'PYMODULE'),
   ('categorias_window',
-   'C:\\Users\\DELL\\Desktop\\pv versiones\\punto de venta '
-   '1.2\\categorias_window.py',
+   'C:\\Users\\DELL\\Desktop\\pv '
+   'versiones\\punto-de-venta-1.2\\categorias_window.py',
    'PYMODULE'),
   ('charset_normalizer',
    'C:\\Users\\DELL\\AppData\\Roaming\\Python\\Python313\\site-packages\\charset_normalizer\\__init__.py',
@@ -501,16 +501,19 @@
    'C:\\Users\\DELL\\AppData\\Roaming\\Python\\Python313\\site-packages\\charset_normalizer\\version.py',
    'PYMODULE'),
   ('clientes_window',
-   'C:\\Users\\DELL\\Desktop\\pv versiones\\punto de venta '
-   '1.2\\clientes_window.py',
+   'C:\\Users\\DELL\\Desktop\\pv '
+   'versiones\\punto-de-venta-1.2\\clientes_window.py',
    'PYMODULE'),
   ('cmd', 'C:\\Program Files\\Python313\\Lib\\cmd.py', 'PYMODULE'),
   ('code', 'C:\\Program Files\\Python313\\Lib\\code.py', 'PYMODULE'),
   ('codeop', 'C:\\Program Files\\Python313\\Lib\\codeop.py', 'PYMODULE'),
+  ('colores',
+   'C:\\Users\\DELL\\Desktop\\pv versiones\\punto-de-venta-1.2\\colores.py',
+   'PYMODULE'),
   ('colorsys', 'C:\\Program Files\\Python313\\Lib\\colorsys.py', 'PYMODULE'),
   ('compras_window',
-   'C:\\Users\\DELL\\Desktop\\pv versiones\\punto de venta '
-   '1.2\\compras_window.py',
+   'C:\\Users\\DELL\\Desktop\\pv '
+   'versiones\\punto-de-venta-1.2\\compras_window.py',
    'PYMODULE'),
   ('concurrent',
    'C:\\Program Files\\Python313\\Lib\\concurrent\\__init__.py',
@@ -531,8 +534,8 @@
    'C:\\Program Files\\Python313\\Lib\\configparser.py',
    'PYMODULE'),
   ('configuracion_monedas_window',
-   'C:\\Users\\DELL\\Desktop\\pv versiones\\punto de venta '
-   '1.2\\configuracion_monedas_window.py',
+   'C:\\Users\\DELL\\Desktop\\pv '
+   'versiones\\punto-de-venta-1.2\\configuracion_monedas_window.py',
    'PYMODULE'),
   ('contextlib',
    'C:\\Program Files\\Python313\\Lib\\contextlib.py',
@@ -542,8 +545,8 @@
    'PYMODULE'),
   ('copy', 'C:\\Program Files\\Python313\\Lib\\copy.py', 'PYMODULE'),
   ('corte_dia_window',
-   'C:\\Users\\DELL\\Desktop\\pv versiones\\punto de venta '
-   '1.2\\corte_dia_window.py',
+   'C:\\Users\\DELL\\Desktop\\pv '
+   'versiones\\punto-de-venta-1.2\\corte_dia_window.py',
    'PYMODULE'),
   ('csv', 'C:\\Program Files\\Python313\\Lib\\csv.py', 'PYMODULE'),
   ('ctypes',
@@ -574,8 +577,8 @@
    'C:\\Program Files\\Python313\\Lib\\ctypes\\wintypes.py',
    'PYMODULE'),
   ('cuentas_por_pagar_window',
-   'C:\\Users\\DELL\\Desktop\\pv versiones\\punto de venta '
-   '1.2\\cuentas_por_pagar_window.py',
+   'C:\\Users\\DELL\\Desktop\\pv '
+   'versiones\\punto-de-venta-1.2\\cuentas_por_pagar_window.py',
    'PYMODULE'),
   ('curses',
    'C:\\Program Files\\Python313\\Lib\\curses\\__init__.py',
@@ -728,7 +731,7 @@
    'C:\\Users\\DELL\\AppData\\Roaming\\Python\\Python313\\site-packages\\darkdetect\\_windows_detect.py',
    'PYMODULE'),
   ('database',
-   'C:\\Users\\DELL\\Desktop\\pv versiones\\punto de venta 1.2\\database.py',
+   'C:\\Users\\DELL\\Desktop\\pv versiones\\punto-de-venta-1.2\\database.py',
    'PYMODULE'),
   ('dataclasses',
    'C:\\Program Files\\Python313\\Lib\\dataclasses.py',
@@ -854,8 +857,8 @@
    'C:\\Program Files\\Python313\\Lib\\http\\server.py',
    'PYMODULE'),
   ('icon_manager',
-   'C:\\Users\\DELL\\Desktop\\pv versiones\\punto de venta '
-   '1.2\\icon_manager.py',
+   'C:\\Users\\DELL\\Desktop\\pv '
+   'versiones\\punto-de-venta-1.2\\icon_manager.py',
    'PYMODULE'),
   ('importlib',
    'C:\\Program Files\\Python313\\Lib\\importlib\\__init__.py',
@@ -925,8 +928,8 @@
    'PYMODULE'),
   ('inspect', 'C:\\Program Files\\Python313\\Lib\\inspect.py', 'PYMODULE'),
   ('inventario_window',
-   'C:\\Users\\DELL\\Desktop\\pv versiones\\punto de venta '
-   '1.2\\inventario_window.py',
+   'C:\\Users\\DELL\\Desktop\\pv '
+   'versiones\\punto-de-venta-1.2\\inventario_window.py',
    'PYMODULE'),
   ('ipaddress', 'C:\\Program Files\\Python313\\Lib\\ipaddress.py', 'PYMODULE'),
   ('jaraco', '-', 'PYMODULE'),
@@ -947,8 +950,8 @@
    'C:\\Program Files\\Python313\\Lib\\logging\\handlers.py',
    'PYMODULE'),
   ('login_window',
-   'C:\\Users\\DELL\\Desktop\\pv versiones\\punto de venta '
-   '1.2\\login_window.py',
+   'C:\\Users\\DELL\\Desktop\\pv '
+   'versiones\\punto-de-venta-1.2\\login_window.py',
    'PYMODULE'),
   ('lzma', 'C:\\Program Files\\Python313\\Lib\\lzma.py', 'PYMODULE'),
   ('mimetypes', 'C:\\Program Files\\Python313\\Lib\\mimetypes.py', 'PYMODULE'),
@@ -1496,8 +1499,8 @@
    'C:\\Users\\DELL\\AppData\\Roaming\\Python\\Python313\\site-packages\\packaging\\version.py',
    'PYMODULE'),
   ('pagos_window',
-   'C:\\Users\\DELL\\Desktop\\pv versiones\\punto de venta '
-   '1.2\\pagos_window.py',
+   'C:\\Users\\DELL\\Desktop\\pv '
+   'versiones\\punto-de-venta-1.2\\pagos_window.py',
    'PYMODULE'),
   ('pathlib',
    'C:\\Program Files\\Python313\\Lib\\pathlib\\__init__.py',
@@ -1539,8 +1542,8 @@
   ('plistlib', 'C:\\Program Files\\Python313\\Lib\\plistlib.py', 'PYMODULE'),
   ('pprint', 'C:\\Program Files\\Python313\\Lib\\pprint.py', 'PYMODULE'),
   ('proveedores_window',
-   'C:\\Users\\DELL\\Desktop\\pv versiones\\punto de venta '
-   '1.2\\proveedores_window.py',
+   'C:\\Users\\DELL\\Desktop\\pv '
+   'versiones\\punto-de-venta-1.2\\proveedores_window.py',
    'PYMODULE'),
   ('psutil',
    'C:\\Users\\DELL\\AppData\\Roaming\\Python\\Python313\\site-packages\\psutil\\__init__.py',
@@ -1691,8 +1694,8 @@
    'C:\\Users\\DELL\\AppData\\Roaming\\Python\\Python313\\site-packages\\readline.py',
    'PYMODULE'),
   ('responsive_manager',
-   'C:\\Users\\DELL\\Desktop\\pv versiones\\punto de venta '
-   '1.2\\responsive_manager.py',
+   'C:\\Users\\DELL\\Desktop\\pv '
+   'versiones\\punto-de-venta-1.2\\responsive_manager.py',
    'PYMODULE'),
   ('rlcompleter',
    'C:\\Program Files\\Python313\\Lib\\rlcompleter.py',
@@ -2110,8 +2113,8 @@
    'PYMODULE'),
   ('tarfile', 'C:\\Program Files\\Python313\\Lib\\tarfile.py', 'PYMODULE'),
   ('tasa_cambio_window',
-   'C:\\Users\\DELL\\Desktop\\pv versiones\\punto de venta '
-   '1.2\\tasa_cambio_window.py',
+   'C:\\Users\\DELL\\Desktop\\pv '
+   'versiones\\punto-de-venta-1.2\\tasa_cambio_window.py',
    'PYMODULE'),
   ('tempfile', 'C:\\Program Files\\Python313\\Lib\\tempfile.py', 'PYMODULE'),
   ('textwrap', 'C:\\Program Files\\Python313\\Lib\\textwrap.py', 'PYMODULE'),
@@ -2295,8 +2298,8 @@
    'C:\\Program Files\\Python313\\Lib\\urllib\\response.py',
    'PYMODULE'),
   ('usuarios_window',
-   'C:\\Users\\DELL\\Desktop\\pv versiones\\punto de venta '
-   '1.2\\usuarios_window.py',
+   'C:\\Users\\DELL\\Desktop\\pv '
+   'versiones\\punto-de-venta-1.2\\usuarios_window.py',
    'PYMODULE'),
   ('webbrowser',
    'C:\\Program Files\\Python313\\Lib\\webbrowser.py',

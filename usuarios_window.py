@@ -1,22 +1,23 @@
 import customtkinter as ctk
 from tkinter import messagebox, ttk
+from colores_modernos import PRIMARY_COLOR, SECONDARY_COLOR, ACCENT_COLOR, BACKGROUND_COLOR, CARD_COLOR, TEXT_COLOR, SUBTEXT_COLOR, SUCCESS_COLOR, ERROR_COLOR, BUTTON_COLOR, BUTTON_TEXT_COLOR, BORDER_RADIUS, FONT_FAMILY, TITLE_FONT_SIZE, SUBTITLE_FONT_SIZE, TEXT_FONT_SIZE, BUTTON_FONT_SIZE
 
 class UsuariosWindow:
     def __init__(self, master, db):
         self.db = db
-        self.window = ctk.CTkToplevel(master, fg_color="#FFFFFF")
+        self.window = ctk.CTkToplevel(master, fg_color=BACKGROUND_COLOR)
         self.window.title("Gestión de Usuarios")
         self.window.geometry("700x500")
         self.window.transient(master)
         self.window.grab_set()
         self.window.lift()
         self.window.focus_force()
-        ctk.CTkLabel(self.window, text="Gestión de Usuarios", font=ctk.CTkFont(size=18, weight="bold")).pack(pady=10)
+        ctk.CTkLabel(self.window, text="Gestión de Usuarios", font=ctk.CTkFont(family=FONT_FAMILY, size=TITLE_FONT_SIZE, weight="bold"), text_color=PRIMARY_COLOR).pack(pady=10)
 
         # Frame para lista de usuarios
-        self.frame_lista = ctk.CTkFrame(self.window, fg_color="#e3f0ff")
+        self.frame_lista = ctk.CTkFrame(self.window, fg_color=CARD_COLOR, corner_radius=BORDER_RADIUS)
         self.frame_lista.pack(side="left", fill="y", padx=10, pady=10)
-        ctk.CTkLabel(self.frame_lista, text="Usuarios registrados:").pack()
+        ctk.CTkLabel(self.frame_lista, text="Usuarios registrados:", font=ctk.CTkFont(family=FONT_FAMILY, size=SUBTITLE_FONT_SIZE, weight="bold"), text_color=SECONDARY_COLOR).pack()
         self.tree_usuarios = ttk.Treeview(self.frame_lista, columns=("id", "username", "nombre", "rol"), show="headings", height=18)
         self.tree_usuarios.heading("id", text="ID")
         self.tree_usuarios.heading("username", text="Usuario")
@@ -30,24 +31,24 @@ class UsuariosWindow:
         self.tree_usuarios.bind("<<TreeviewSelect>>", self.seleccionar_usuario_evento)
 
         # Frame para edición/registro
-        self.frame_edicion = ctk.CTkFrame(self.window, fg_color="#e3f0ff")
+        self.frame_edicion = ctk.CTkFrame(self.window, fg_color=CARD_COLOR, corner_radius=BORDER_RADIUS)
         self.frame_edicion.pack(side="right", fill="both", expand=True, padx=10, pady=10)
-        ctk.CTkLabel(self.frame_edicion, text="Nombre:").pack(anchor="w", padx=20)
-        self.entry_nombre = ctk.CTkEntry(self.frame_edicion, width=400, height=35)
+        ctk.CTkLabel(self.frame_edicion, text="Nombre:", font=ctk.CTkFont(family=FONT_FAMILY, size=TEXT_FONT_SIZE), text_color=TEXT_COLOR).pack(anchor="w", padx=20)
+        self.entry_nombre = ctk.CTkEntry(self.frame_edicion, width=400, height=35, font=ctk.CTkFont(family=FONT_FAMILY, size=TEXT_FONT_SIZE))
         self.entry_nombre.pack(pady=5, padx=20)
-        ctk.CTkLabel(self.frame_edicion, text="Usuario:").pack(anchor="w", padx=20)
-        self.entry_usuario = ctk.CTkEntry(self.frame_edicion, width=400, height=35)
+        ctk.CTkLabel(self.frame_edicion, text="Usuario:", font=ctk.CTkFont(family=FONT_FAMILY, size=TEXT_FONT_SIZE), text_color=TEXT_COLOR).pack(anchor="w", padx=20)
+        self.entry_usuario = ctk.CTkEntry(self.frame_edicion, width=400, height=35, font=ctk.CTkFont(family=FONT_FAMILY, size=TEXT_FONT_SIZE))
         self.entry_usuario.pack(pady=5, padx=20)
-        ctk.CTkLabel(self.frame_edicion, text="Rol:").pack(anchor="w", padx=20)
-        self.combo_rol = ctk.CTkComboBox(self.frame_edicion, values=["sistema", "admin", "cajero"], width=200, height=35)
+        ctk.CTkLabel(self.frame_edicion, text="Rol:", font=ctk.CTkFont(family=FONT_FAMILY, size=TEXT_FONT_SIZE), text_color=TEXT_COLOR).pack(anchor="w", padx=20)
+        self.combo_rol = ctk.CTkComboBox(self.frame_edicion, values=["sistema", "admin", "cajero"], width=200, height=35, font=ctk.CTkFont(family=FONT_FAMILY, size=TEXT_FONT_SIZE))
         self.combo_rol.set("cajero")
         self.combo_rol.pack(pady=5, padx=20)
-        ctk.CTkLabel(self.frame_edicion, text="Contraseña:").pack(anchor="w", padx=20)
-        self.entry_password = ctk.CTkEntry(self.frame_edicion, width=400, height=35, show="*")
+        ctk.CTkLabel(self.frame_edicion, text="Contraseña:", font=ctk.CTkFont(family=FONT_FAMILY, size=TEXT_FONT_SIZE), text_color=TEXT_COLOR).pack(anchor="w", padx=20)
+        self.entry_password = ctk.CTkEntry(self.frame_edicion, width=400, height=35, show="*", font=ctk.CTkFont(family=FONT_FAMILY, size=TEXT_FONT_SIZE))
         self.entry_password.pack(pady=5, padx=20)
-        ctk.CTkButton(self.frame_edicion, text="Registrar Usuario", command=self.registrar_usuario, fg_color="green").pack(pady=10)
-        ctk.CTkButton(self.frame_edicion, text="Actualizar Usuario", command=self.actualizar_usuario, fg_color="orange").pack(pady=10)
-        ctk.CTkButton(self.frame_edicion, text="Cambiar Contraseña", command=self.cambiar_contraseña, fg_color="blue").pack(pady=10)
+        ctk.CTkButton(self.frame_edicion, text="Registrar Usuario", command=self.registrar_usuario, fg_color=SUCCESS_COLOR, text_color=BUTTON_TEXT_COLOR, corner_radius=BORDER_RADIUS, font=ctk.CTkFont(family=FONT_FAMILY, size=BUTTON_FONT_SIZE, weight="bold")).pack(pady=10)
+        ctk.CTkButton(self.frame_edicion, text="Actualizar Usuario", command=self.actualizar_usuario, fg_color=ACCENT_COLOR, text_color=BUTTON_TEXT_COLOR, corner_radius=BORDER_RADIUS, font=ctk.CTkFont(family=FONT_FAMILY, size=BUTTON_FONT_SIZE, weight="bold")).pack(pady=10)
+        ctk.CTkButton(self.frame_edicion, text="Cambiar Contraseña", command=self.cambiar_contraseña, fg_color=PRIMARY_COLOR, text_color=BUTTON_TEXT_COLOR, corner_radius=BORDER_RADIUS, font=ctk.CTkFont(family=FONT_FAMILY, size=BUTTON_FONT_SIZE, weight="bold")).pack(pady=10)
 
         self.usuario_seleccionado = None
         self.cargar_usuarios()

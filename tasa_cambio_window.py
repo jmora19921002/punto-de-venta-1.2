@@ -2,6 +2,7 @@ import customtkinter as ctk
 from tkinter import messagebox
 from datetime import datetime
 from icon_manager import icon_manager
+from colores_modernos import PRIMARY_COLOR, SECONDARY_COLOR, ACCENT_COLOR, BACKGROUND_COLOR, CARD_COLOR, TEXT_COLOR, SUBTEXT_COLOR, SUCCESS_COLOR, ERROR_COLOR, BUTTON_COLOR, BUTTON_TEXT_COLOR, BORDER_RADIUS, FONT_FAMILY, TITLE_FONT_SIZE, SUBTITLE_FONT_SIZE, TEXT_FONT_SIZE, BUTTON_FONT_SIZE
 
 class TasaCambioWindow:
     def __init__(self, parent, db, callback_actualizar=None):
@@ -13,7 +14,7 @@ class TasaCambioWindow:
         self.tasa_actual = self.db.get_tasa_cambio()
         
         # Crear ventana responsive y más grande
-        self.window = ctk.CTkToplevel(parent, fg_color="#FFFFFF")
+        self.window = ctk.CTkToplevel(parent, fg_color=BACKGROUND_COLOR)
         self.window.title("Actualizar Tasa de Cambio")
         # Configuración responsive
         screen_width = self.window.winfo_screenwidth()
@@ -35,32 +36,33 @@ class TasaCambioWindow:
     
     def setup_ui(self):
         # Título principal con más espacio
-        title_frame = ctk.CTkFrame(self.window, fg_color="#e3f0ff")
+        title_frame = ctk.CTkFrame(self.window, fg_color=CARD_COLOR, corner_radius=BORDER_RADIUS)
         title_frame.pack(fill="x", padx=20, pady=15)
         
         titulo = ctk.CTkLabel(
-            title_frame, 
-            text="💱 ACTUALIZAR TASA DE CAMBIO", 
-            font=ctk.CTkFont(size=24, weight="bold")
+            title_frame,
+            text="💱 ACTUALIZAR TASA DE CAMBIO",
+            font=ctk.CTkFont(family=FONT_FAMILY, size=TITLE_FONT_SIZE, weight="bold"),
+            text_color=PRIMARY_COLOR
         )
         titulo.pack(pady=20)
         
         # Frame para información actual con más espacio
-        frame_actual = ctk.CTkFrame(self.window, fg_color="#e3f0ff")
+        frame_actual = ctk.CTkFrame(self.window, fg_color=CARD_COLOR, corner_radius=BORDER_RADIUS)
         frame_actual.pack(pady=10, padx=20, fill="x")
         
         ctk.CTkLabel(
-            frame_actual, 
-            text="📊 INFORMACIÓN ACTUAL", 
-            font=ctk.CTkFont(size=16, weight="bold")
+            frame_actual,
+            text="📊 INFORMACIÓN ACTUAL",
+            font=ctk.CTkFont(family=FONT_FAMILY, size=SUBTITLE_FONT_SIZE, weight="bold"),
+            text_color=SECONDARY_COLOR
         ).pack(pady=10)
         
-        # Mostrar tasa actual
         self.label_tasa_actual = ctk.CTkLabel(
             frame_actual,
             text=f"Tasa Actual: 1 USD = {self.tasa_actual:.2f} VES",
-            font=ctk.CTkFont(size=14),
-            text_color="blue"
+            font=ctk.CTkFont(family=FONT_FAMILY, size=TEXT_FONT_SIZE),
+            text_color=PRIMARY_COLOR
         )
         self.label_tasa_actual.pack(pady=5)
         
@@ -69,12 +71,12 @@ class TasaCambioWindow:
         ctk.CTkLabel(
             frame_actual,
             text=f"Última actualización: {fecha_actual}",
-            font=ctk.CTkFont(size=12),
-            text_color="gray"
+            font=ctk.CTkFont(family=FONT_FAMILY, size=TEXT_FONT_SIZE-2),
+            text_color=SUBTEXT_COLOR
         ).pack(pady=5)
         
         # Frame para nueva tasa con más espacio
-        frame_nueva = ctk.CTkFrame(self.window)
+        frame_nueva = ctk.CTkFrame(self.window, fg_color=CARD_COLOR, corner_radius=BORDER_RADIUS)
         frame_nueva.pack(pady=15, padx=20, fill="x")
         
         ctk.CTkLabel(
